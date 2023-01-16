@@ -41,6 +41,8 @@ A Todo app using Spring Boot as RESTful service and React as UI.
 
 #### Docker
 
+![Docker container](documentation/images/docker_container.png)
+
 ##### Development
 ```
 docker-compose -p ns-todo up`
