@@ -1,0 +1,20 @@
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate:
+        show_sql: false
+        format_sql: false
+        use_sql_comments: false
+  h2:
+    console:
+      enabled: false
+      path: /h2-console
+
+
+logging:
+  level:
+    root: ERROR
+    org.hibernate.sql: ERROR
+    ca.ns.assignment: INFO
+

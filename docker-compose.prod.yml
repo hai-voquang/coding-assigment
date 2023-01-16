@@ -1,0 +1,20 @@
+version: '3'
+services:
+  ns-todo-backend:
+    container_name: ns-todo-backend-prod
+    build:
+      context: ./todo-backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING.PROFILES.ACTIVE=prod
+  ns-todo-frontend:
+    container_name: ns-todo-frontend-prod
+    build:
+      context: ./todo-frontend
+      dockerfile: Dockerfile.prod
+    ports:
+      - "3000:80"
+    links:
+      - ns-todo-backend

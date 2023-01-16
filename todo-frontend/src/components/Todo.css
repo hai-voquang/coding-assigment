@@ -1,0 +1,8 @@
+.c-cb .todo-label {
+    display: inline;
+    margin-left: 15px;
+}
+.todo-completed {
+    color: #d9d9d9;
+    text-decoration: line-through;
+}

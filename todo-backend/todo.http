@@ -1,0 +1,24 @@
+
+### get all todos
+GET http://localhost:8080/api/v1/todos/all
+Accept: application/json
+
+### Add new todo
+POST http://localhost:8080/api/v1/todos
+Content-Type: application/json
+
+{
+  "name": "todo1"
+}
+
+### Get by id 1
+GET http://localhost:8080/api/v1/todos/1
+Accept: application/json
+
+###  mark done
+PUT http://localhost:8080/api/v1/todos/1/mark-done
+Content-Type: application/json
+
+### delete todo by id 1
+DELETE http://localhost:8080/api/v1/todos/1
+Accept: application/json
