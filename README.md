@@ -45,11 +45,13 @@ A Todo app using Spring Boot as RESTful service and React as UI.
 
 ##### Development
 ```
-docker-compose -p ns-todo up`
+cd todo-backend && ./gradlew build 
+docker-compose -p ns-todo up
 ```
 
 ##### Production
 ```
+cd todo-backend && ./gradlew build
 docker-compose -p ns-todo-prod -f docker-compose.prod.yml up
 ```
 
