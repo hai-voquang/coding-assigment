@@ -16,11 +16,12 @@ public class WebConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/api/**")
+                registry.addMapping("/**")
                         .allowedOrigins("*")
-                        .allowedHeaders("*")
-                        .allowedMethods("*")
-                        .exposedHeaders("Content-Type")
+                        .allowedHeaders("Content-Type", "X-Requested-With", "accept", "Origin", "Access-Control-Request-Method",
+                                "Access-Control-Request-Headers")
+                        .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
+                        .exposedHeaders("Content-Type", "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials")
                         .allowCredentials(false).maxAge(3600);
             }
         };

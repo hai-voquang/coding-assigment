@@ -26,6 +26,7 @@ A Todo app using Spring Boot as RESTful service and React as UI.
 
 - Java 17
 - SpringBoot 3.0.1
+- Spring Security 3.0.1
 - JPA/Hibernate
 - H2 in-memory database
 - JUnit 5
@@ -61,6 +62,16 @@ docker-compose -p ns-todo-prod -f docker-compose.prod.yml up
  cd todo-backend && ./gradlew bootRun
 ```
 
+How to deploy docker image to Docker Hub
+
+```
+ ./gradlew clean docker
+ docker tag ns-todo-backend:0.0.1-SNAPSHOT <your-user-name>/ns-todo-backend:0.0.1-SNAPSHOT
+ doker login
+ <username> <password>
+ docker push <your-user-name>/ns-todo-backend:0.0.1-SNAPSHOT
+
+```
 ##### Front-end
 
 ```

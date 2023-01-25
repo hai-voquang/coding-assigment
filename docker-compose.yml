@@ -2,9 +2,10 @@ version: '3'
 services:
   ns-todo-backend:
     container_name: ns-todo-backend
-    build:
-      context: ./todo-backend
-      dockerfile: Dockerfile
+    image: ns-todo-backend:0.0.1-SNAPSHOT
+#    build:
+#      context: ./todo-backend
+#      dockerfile: Dockerfile
     ports:
       - "8080:8080"
     environment:

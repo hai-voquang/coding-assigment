@@ -1,6 +1,7 @@
 package ca.ns.assignment.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -17,6 +18,7 @@ public class Todo {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   Long id;
 
+  @NotBlank
   String name;
 
   boolean completed;
