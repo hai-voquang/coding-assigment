@@ -45,17 +45,17 @@ function App() {
   }
 
   function editTask(id, newName) {
-    const editedTaskList = tasks.map((task) => {
-      if (id === task.id) {
-        return { ...task, name: newName };
-      }
-      return task;
-    });
     request({
       url: UPDATE_NAME_TODO_URL.replace("{id}", id),
       method: "PUT",
       body: JSON.stringify({ id: id, name: newName }),
     }).then((response) => {
+      const editedTaskList = tasks.map((task) => {
+        if (id === task.id) {
+          return { ...task, name: response.name };
+        }
+        return task;
+      });
       setTasks(editedTaskList);
     });
   }
@@ -80,6 +80,8 @@ function App() {
       body: JSON.stringify(newTask),
     }).then((response) => {
       newTask.id = response.id;
+      newTask.name = response.name;
+      newTask.completed = response.completed;
       setTasks([...tasks, newTask]);
     });
   }

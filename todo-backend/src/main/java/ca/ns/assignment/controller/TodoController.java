@@ -4,7 +4,9 @@ package ca.ns.assignment.controller;
 import ca.ns.assignment.exception.TodoNotFoundException;
 import ca.ns.assignment.model.entity.Todo;
 import ca.ns.assignment.service.TodoService;
+import ca.ns.assignment.utils.InputUtils;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,8 +29,9 @@ public class TodoController {
 
     @PostMapping
     @Operation(summary = "Add new todo")
-    public ResponseEntity<Todo> addTodo(@RequestBody Todo todo) {
+    public ResponseEntity<Todo> addTodo(@RequestBody @Valid Todo todo) {
         log.info("Processing addTodo request");
+        todo.setName(InputUtils.sanitizeText(todo.getName()));
         Todo newTodo = todoService.addTodo(todo);
         return new ResponseEntity<>(newTodo, HttpStatus.CREATED);
     }
@@ -67,9 +70,10 @@ public class TodoController {
 
     @PutMapping("/{id}/edit-name")
     @Operation(summary = "Edit todo name by id")
-    public ResponseEntity<Todo> changeName(@PathVariable("id") Long id, @RequestBody Todo todo) {
+    public ResponseEntity<Todo> changeName(@PathVariable("id") Long id, @Valid @RequestBody Todo todo) {
         log.info("Processing changeName request with id: {}", id);
-        return todoService.changeName(id, todo.getName())
+
+        return todoService.changeName(id, InputUtils.sanitizeText(todo.getName()))
                 .map(updatedTodo -> new ResponseEntity<>(updatedTodo, HttpStatus.OK))
                 .orElseThrow(() -> new TodoNotFoundException(id));
     }
