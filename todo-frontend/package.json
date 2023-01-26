@@ -37,5 +37,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "jest": "^29.4.0",
+    "jest-watch-typeahead": "^0.6.5",
+    "jest-watcher": "^29.4.0",
+    "msw": "^1.0.0"
   }
 }

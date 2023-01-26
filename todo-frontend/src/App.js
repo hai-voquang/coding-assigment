@@ -111,7 +111,12 @@ function App() {
   return (
     <div className="todoapp stack-large">
       <Form addTask={addTask} />
-      <h2 id="list-heading" tabIndex="-1" ref={listHeadingRef}>
+      <h2
+        aria-label="todo-list-remaining"
+        id="list-heading"
+        tabIndex="-1"
+        ref={listHeadingRef}
+      >
         {headingText}
       </h2>
       <ul

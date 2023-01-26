@@ -29,6 +29,7 @@ function Form(props) {
         autoComplete="off"
         value={name}
         onChange={handleChange}
+        aria-label="new-todo-input"
       />
       <button type="submit" className="btn btn-success btn-lg">
         Add
