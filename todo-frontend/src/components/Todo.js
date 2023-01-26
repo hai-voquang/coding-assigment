@@ -12,6 +12,7 @@ function usePrevious(value) {
 export default function Todo(props) {
   const [isEditing, setEditing] = useState(false);
   const [newName, setNewName] = useState("");
+  const [valid, setValid] = useState(true);
 
   const editFieldRef = useRef(null);
   const editButtonRef = useRef(null);
@@ -25,11 +26,13 @@ export default function Todo(props) {
   function handleSubmit(e) {
     e.preventDefault();
     if (!newName.trim()) {
+      setValid(false);
       return;
     }
     props.editTask(props.id, newName);
     setNewName("");
     setEditing(false);
+    setValid(true);
   }
 
   const editingTemplate = (
@@ -38,6 +41,18 @@ export default function Todo(props) {
         <label className="todo-label" htmlFor={props.id}>
           New name for {props.name}
         </label>
+        {!valid && (
+          <span
+            id="changed-name-error"
+            className="ns-error-message field-validation-error"
+          >
+            <i
+              className="fa fa-exclamation-circle error-indicator errorAlert"
+              aria-hidden="true"
+            ></i>
+            <span className="ns-visually-hidden">Error:</span> Enter a todo name
+          </span>
+        )}
         <input
           id={props.id}
           className="todo-text"
